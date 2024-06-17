@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map with Hospitals</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Geomatics Engineering</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="map.html">Map</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h2 class="text-center mt-3">Map of Hospitals</div>
+
+    <div id="map" class="mt-4"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Create the map
+        var map = L.map('map').setView([-1.286389, 36.817223], 7);
+
+        // Add a tile layer to the map (OpenStreetMap tiles)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Array of hospitals with their coordinates
+        var hospitals = [
+            { name: "Kenyatta National Hospital", phone: "+254 712 345678", description: "The largest referral and teaching hospital in Kenya.", lat: -1.2989, lon: 36.8016 },
+            { name: "Aga Khan University Hospital", phone: "+254 713 234567", description: "Known for advanced medical technology and patient care.", lat: -1.2685, lon: 36.8045 },
+            { name: "Moi Teaching and Referral Hospital", phone: "+254 714 345678", description: "A major teaching and referral hospital in Eldoret.", lat: 0.5167, lon: 35.2698 },
+            { name: "Coast General Hospital", phone: "+254 715 456789", description: "A prominent hospital serving the coastal region.", lat: -4.0624, lon: 39.6662 },
+            { name: "Kisumu County Hospital", phone: "+254 716 567890", description: "A leading healthcare facility in Kisumu.", lat: -0.0917, lon: 34.7678 },
+            { name: "Nairobi Hospital", phone: "+254 717 678901", description: "A premier healthcare facility in Nairobi.", lat: -1.2863, lon: 36.8138 },
+            { name: "Aga Khan Hospital, Mombasa", phone: "+254 718 789012", description: "A branch of the renowned Aga Khan Hospital.", lat: -4.0564, lon: 39.6644 },
+            { name: "Mater Hospital", phone: "+254 719 890123", description: "A leading hospital providing compassionate care.", lat: -1.2978, lon: 36.7941 },
+            { name: "Gertrude's Children's Hospital", phone: "+254 720 901234", description: "Specialized in pediatric healthcare services.", lat: -1.2874, lon: 36.8124 },
+            { name: "Tenwek Hospital", phone: "+254 721 012345", description: "A Christian teaching and referral hospital.", lat: -0.7220, lon: 35.2477 },
+            { name: "Karen Hospital", phone: "+254 722 123456", description: "Committed to providing quality healthcare.", lat: -1.3163, lon: 36.7381 },
+            { name: "PCEA Kikuyu Hospital", phone: "+254 723 234567", description: "A mission hospital offering holistic care.", lat: -1.2527, lon: 36.6787 },
+            { name: "AIC Kijabe Hospital", phone: "+254 724 345678", description: "A leading faith-based healthcare institution.", lat: -0.9308, lon: 36.6410 },
+            { name: "Nyeri Provincial General Hospital", phone: "+254 725 456789", description: "Providing healthcare services to Nyeri County.", lat: -0.4274, lon: 36.9519 },
+            { name: "Machakos Level 5 Hospital", phone: "+254 726 567890", description: "A major healthcare facility in Machakos.", lat: -1.5215, lon: 37.2639 },
+            { name: "Nakuru Level 5 Hospital", phone: "+254 727 678901", description: "Providing specialized medical services in Nakuru.", lat: -0.2926, lon: 36.0664 },
+            { name: "Meru Level 5 Hospital", phone: "+254 728 789012", description: "A referral hospital serving Meru County.", lat: 0.0482, lon: 37.6555 },
+            { name: "Bungoma County Referral Hospital", phone: "+254 729 890123", description: "A key healthcare institution in Bungoma County.", lat: 0.5670, lon: 34.5609 },
+            { name: "Kakamega County General Hospital", phone: "+254 730 901234", description: "Providing comprehensive healthcare services.", lat: 0.2925, lon: 34.7394 },
+            { name: "Kisii Teaching and Referral Hospital", phone: "+254 731 012345", description: "A major referral hospital in Kisii County.", lat: -0.6827, lon: 34.7614 }
+        ];
+
+        // Add markers for each hospital
+        hospitals.forEach(function (hospital) {
+            var marker = L.marker([hospital.lat, hospital.lon]).addTo(map);
+            marker.bindPopup(`<b>${hospital.name}</b><br>Phone: ${hospital.phone}<br>${hospital.description}`);
+        });
+    </script>
+</body>
+</html>
